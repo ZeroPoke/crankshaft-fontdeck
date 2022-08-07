@@ -1,0 +1,35 @@
+name = "FontDeck"
+version = "1.0.0"
+link = "TODO"
+source = "TODO"
+min-crankshaft-version = "0.2.2"
+
+[author]
+name = "ZeroPoke"
+link = "zeropoke.net"
+
+[entrypoints]
+
+	[entrypoints.desktop]
+	library = true
+	menu = true
+
+	[entrypoints.deck]
+	library = true
+	menu = true
+	quick-access = true
+
+[store]
+description = """
+FontDeck is for changing the font on your Steam Deck.
+
+Current Selection:
+	Acme,
+	Assistant,
+	Catamaran,
+	ComicMonoNF,
+	OpenDyslexic3,
+	Pacifico,
+	Roboto,
+	Simpsons,
+"""
