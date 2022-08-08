@@ -1,12 +1,12 @@
 name = "FontDeck"
 version = "1.0.0"
-link = "TODO"
-source = "TODO"
+link = "https://github.com/ZeroPoke/crankshaft-fontdeck"
+source = "https://github.com/ZeroPoke/crankshaft-fontdeck"
 min-crankshaft-version = "0.2.2"
 
 [author]
 name = "ZeroPoke"
-link = "zeropoke.net"
+link = "https://github.com/ZeroPoke/"
 
 [entrypoints]
 
@@ -22,14 +22,8 @@ link = "zeropoke.net"
 [store]
 description = """
 FontDeck is for changing the font on your Steam Deck.
+Looking for Good Fonts to add.  ZeroPoke in the CS Discord.
 
 Current Selection:
-	Acme,
-	Assistant,
-	Catamaran,
-	ComicMonoNF,
-	OpenDyslexic3,
-	Pacifico,
-	Roboto,
-	Simpsons,
+Comic Mono NF, Acme, Akbar, Assistant, Bubblegum Sans, Catamaran, Clarity City, Final Frontier Old Style, Foundation One, Noto Mono, OpenDyslexic3, Pacifico, Roboto, Savate, Twinkle Star, Wander Over Yonder, Savate, Twinkle Star, Wander Over Yonder
 """

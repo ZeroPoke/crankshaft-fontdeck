@@ -100,7 +100,6 @@ function BuildUI() {
 					float: left;
 
 				}
-				
 
 				.csfd-button {
 					float: right;
@@ -184,14 +183,22 @@ function randomPangrams() {
 
 // Global Var... GET FUCKED!!!!!!!!!
 var BuiltinFonts = 
-	{"ComicMonoNF" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/35601a985e1f515e73544af91d200259d3849c28/fontdeck/fonts/ComicMonoNF.ttf?raw=true",
-	"Acme" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/35601a985e1f515e73544af91d200259d3849c28/fontdeck/fonts/Acme-Regular.ttf?raw=true",
-	"Assistant" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/040e3ace20e52667b539ad5109229d84d2339738/fontdeck/fonts/Assistant-VariableFont_wght.ttf?raw=true",
-	"Catamaran" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/040e3ace20e52667b539ad5109229d84d2339738/fontdeck/fonts/Catamaran-VariableFont_wght.ttf?raw=true",
-	"OpenDyslexic3" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/5880486229426c14e5ab4f83d66ec2d459972199/fontdeck/fonts/OpenDyslexic3-Regular.ttf?raw=true",
-	"Pacifico" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/040e3ace20e52667b539ad5109229d84d2339738/fontdeck/fonts/Pacifico-Regular.ttf?raw=true",
-	"Roboto" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/35601a985e1f515e73544af91d200259d3849c28/fontdeck/fonts/Roboto-Regular.ttf?raw=true",
-	"Simpsonfont" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-plugins/040e3ace20e52667b539ad5109229d84d2339738/fontdeck/fonts/Simpsonfont.ttf?raw=true"
+	{"Comic Mono NF" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/ComicMonoNF.ttf?raw=true",
+	"Acme" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/Acme-Regular.ttf?raw=true",
+	"Akbar" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/akbar.ttf?raw=true",
+	"Assistant" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/Assistant-VariableFont_wght.ttf?raw=true",
+	"Bubblegum Sans" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/BubblegumSans-Regular.ttf?raw=true",
+	"Catamaran" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/Catamaran-VariableFont_wght.ttf?raw=true",
+	"Clarity City" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/ClarityCity-Regular.ttf?raw=true",
+	"Final Frontier Old Style" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/FINALOLD.TTF?raw=true",
+	"Foundation One" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/FoundationOne.ttf?raw=true",
+	"Noto Mono" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/NotoSansMono-VariableFont_wdth,wght.ttf?raw=true",
+	"OpenDyslexic3" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/OpenDyslexic3-Regular.ttf?raw=true",
+	"Pacifico" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/Pacifico-Regular.ttf?raw=true",
+	"Roboto" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/Roboto-Regular.ttf?raw=true",
+	"Savate" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/savate-regular.otf?raw=true",
+	"Twinkle Star" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/TwinkleStar-Regular.ttf?raw=true",
+	"Wander Over Yonder" : "https://rawcdn.githack.com/ZeroPoke/crankshaft-fontdeck/957edbcd428bc133921d054ccaa357cc1918b688/fonts/wander_over_yonder_font.ttf?raw=true",
 };
 
 var BuiltinPangrams = 
