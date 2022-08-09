@@ -169,7 +169,7 @@ function BuildUI() {
 		btns.forEach(function (i) {
 			i.addEventListener('click', function(event) {
 				SaveFont(event.target.id);
-				smm.Plugins.reloadPlugin('fontdeck');
+				smm.Plugins.reloadPlugin('crankshaft-fontdeck');
 			});
 		});
 		},

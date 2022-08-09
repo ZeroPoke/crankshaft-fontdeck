@@ -11,8 +11,8 @@ link = "https://github.com/ZeroPoke/"
 [entrypoints]
 
 	[entrypoints.desktop]
-	library = true
-	menu = true
+	library = false
+	menu = false
 
 	[entrypoints.deck]
 	library = true
