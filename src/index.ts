@@ -126,7 +126,7 @@ function BuildUI() {
 					text-align: left;
 					display: inline-block;
 					float: left;
-
+					color: rgba(255, 255, 255, 90%);
 				}
 
 				#FontDeck-Paneldiv .csfd-button {
@@ -187,7 +187,7 @@ function BuildUI() {
 				.option-input.radio::after {
 					border-radius: 50%;
 				}
-				fieldset {
+				#FontDeck-Paneldiv fieldset {
 					text-align: right;
 					border: 0;
 				  }
@@ -231,7 +231,7 @@ function BuildUI() {
 				//console.info("key " + key + " has value " + BuiltinFonts[key]);
 			}
 
-		// Default List Item, Plus Processed Lists Items
+		// Default List Item, Plus Processed Lists Items  "Motiva Sans"
 		fdpanel.innerHTML = `
 			<div>
 				<h2 style="text-align: left;">FontDeck</h2>
@@ -239,14 +239,31 @@ function BuildUI() {
 			</div><br /><br /><br />
 			<div id="wrapper">
 				<ul style="list-style: none; margin: 0px; padding: 0px;">
-					<li data-cs-gp-in-group="root" data-cs-gp-group="FontDefault" data-cs-gp-init-focus="true" style="display: block; width: 100%; background-color: rgba(255, 255, 255, 0.05); padding: 8px 0px; margin-bottom: 12px;">
-						<div style="display: flex; flex-direction: column; margin: 4px 12px;">
-							<div id="main">
-								<h3 STYLE="font-family: "Motiva Sans" !important;" style="margin: 0px;">Default Steam OS</h3>
-							</div>
-							<p STYLE="font-family: "Motiva Sans" !important;" style="margin: 0px 0px 0px;">`+randomPangrams()+"  "+randomPangrams()+"  "+randomPangrams()+`</p>
+					<li data-cs-gp-in-group="root" data-cs-gp-group="FontMotiva" data-cs-gp-init-focus="true" style="display: block; width: 100%; background-color: rgba(255, 255, 255, 0.05); padding: 8px 0px; margin-bottom: 12px;">
+					<div style="display: flex; flex-direction: column; margin: 4px 12px;">
+					<div class="fdradiocontrols">
+						<h3 STYLE="font-family: "Motiva Sans" !important;" style="margin: 0px;">Default</h3>
+						<fieldset>
+							<label class="fdradio">
+							Menu
+								<input type="radio" class="option-input radio" value="" data-cs-gp-init-focus="true" name="Menu" data-cs-gp-in-group="FontMotiva" data-cs-gp-item="FontMotiva-Radio-Menu"/>
+								
+							</label>
 
-						</div>
+							<label class="fdradio">
+							Library
+								<input type="radio" class="option-input radio" value="" name="Library" data-cs-gp-in-group="FontMotiva" data-cs-gp-item="FontMotiva-Radio-Library"/>
+								
+							</label>
+
+							<label class="fdradio">
+								Quick
+								<input type="radio" class="option-input radio" value="" name="Quick" data-cs-gp-in-group="FontMotiva" data-cs-gp-item="FontMotiva-Radio-Quick"/>
+							</label>
+						</fieldset>
+					</div>
+				<p STYLE="font-family: "Motiva Sans" !important;" style="margin: 0px 0px 0px;">`+randomPangrams()+"  "+randomPangrams()+"  "+randomPangrams()+`</p>
+			</div>
 					</li>
 				`+SelectOptions+`
 				</ul>
