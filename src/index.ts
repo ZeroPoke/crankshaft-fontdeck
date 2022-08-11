@@ -3,19 +3,39 @@ import { SMM } from '@crankshaft/types';
 export const load = async (smm: SMM) => {
 	console.info('FontDeck Loading...');
 
-	var fontname = LoadFont();
+	var fontnameLibrary = LoadFont("Library");
 
-	InjectFontDeck(await fontname);
+	InjectFontDeck(await fontnameLibrary);
 
 	if (smm.entry === 'library') {
 		BuildUI();
+	}
+
+	if (smm.entry === 'quickAccess') {
+		var fontnameQuick = LoadFont("Quick");
+	
+		InjectFontDeck(await fontnameQuick);
+	}
+
+	if (smm.entry === 'menu') {
+		var fontnameMenu = LoadFont("Menu");
+	
+		InjectFontDeck(await fontnameMenu);
 	}
 };
 
 export const unload = (smm: SMM) => {
 	document.getElementById("FontDeck")?.remove();
-	document.getElementById("FontDeck-Panel")?.remove();
-	document.getElementById("FontDeck-Panel")?.remove();
+	document.getElementById("FontDeck-Panelstyle")?.remove();
+	document.getElementById("FontDeck-Paneldiv")?.remove();
+
+	if (smm.entry === 'quickAccess') {
+		document.getElementById("FontDeck")?.remove();
+	}
+
+	if (smm.entry === 'menu') {
+		document.getElementById("FontDeck")?.remove();
+	}
 
 	if (smm.entry === 'library') {
 		smm.MenuManager.removeMenuItem('fontdeck');
@@ -25,13 +45,13 @@ export const unload = (smm: SMM) => {
 
 };
 
-async function SaveFont(Name: String) {
-	await smm.Store.set('fontdeck', 'fontname', Name);
+async function SaveFont(Name: String, Side: String) {
+	await smm.Store.set('fontdeck', Side, Name);
 	//await smm.Store.set('fontdeck', 'fonturl', URL);
 }
 
-async function LoadFont() {
-	const fontname = await smm.Store.get('fontdeck', 'fontname');
+async function LoadFont(Side: String) {
+	const fontname = await smm.Store.get('fontdeck', Side);
 	//const fonturl = await smm.Store.get('fontdeck', 'fonturl');
 	return fontname;
 }
@@ -66,10 +86,10 @@ function BuildUI() {
 			render: async (smm: SMM, root: HTMLElement) => {
 		// create a style element
 			const fdpanel = document.createElement('div');
-			fdpanel.setAttribute("id", "FontDeck-Panel");
+			fdpanel.setAttribute("id", "FontDeck-Paneldiv");
 
 			const fdpanelstyle = document.createElement('style');
-			fdpanelstyle.setAttribute("id", "FontDeck-Panel");
+			fdpanelstyle.setAttribute("id", "FontDeck-Panelstyle");
 		
 			// add the CSS as a string
 			for (var key in BuiltinFonts) {
@@ -82,18 +102,18 @@ function BuildUI() {
 			}
 
 			fdpanelstyle.innerHTML += `
-				#FontDeck-Panel {
-					width: 90%;
-					margin: 0 auto;
+				#FontDeck-Paneldiv {
+					width: 96%;
+					margin: 10px auto;
 					display: block;
 					text-align: center;
 				}
 
-				p {
+				#FontDeck-Paneldiv p {
 					text-align: left;
 				}
 
-				h3 {
+				#FontDeck-Paneldiv h2 {
 					margin: 5px;
 					text-align: left;
 					display: inline-block;
@@ -101,14 +121,22 @@ function BuildUI() {
 
 				}
 
-				.csfd-button {
+				#FontDeck-Paneldiv h3 {
+					margin: 5px;
+					text-align: left;
+					display: inline-block;
+					float: left;
+
+				}
+
+				#FontDeck-Paneldiv .csfd-button {
 					float: right;
 					width: fit-content;
 					background-color: #1a9fff;
 					color: white;
 					text-transform: uppercase;
 					cursor: pointer;
-					padding: 6px 12px;
+					padding: 12px;
 					border-width: initial;
 					border-style: none;
 					border-color: initial;
@@ -117,6 +145,52 @@ function BuildUI() {
 					transition: all 300ms ease 0s;
 					justify-content:flex-end;
 				}
+				
+				#FontDeck-Paneldiv .fdradiocontrols {
+					//1display: flex;
+					align-items: right;
+					justify-content: right;
+				}				  
+
+				#FontDeck-Paneldiv .fdradio {
+					// flex: 1 0 auto;
+					// display: flex;
+					// flex-direction: row;
+					// align-items: right;
+					// justify-content: right;
+					
+					display: inline-block;
+					vertical-align: top;
+					margin-right: 3%;
+				}
+
+				.option-input {
+					appearance: none;
+					height: 20px;
+					width: 20px;
+					background: #cbd1d8;
+					border: none;
+					color: #fff;
+					cursor: pointer;
+					display: inline-block;
+					outline: none;
+				}
+				.option-input:hover {
+					background: #9faab7;
+				}
+				.option-input:checked {
+					background: #1a9fff;
+				}
+				.option-input.radio {
+					border-radius: 50%;
+				}
+				.option-input.radio::after {
+					border-radius: 50%;
+				}
+				fieldset {
+					text-align: right;
+					border: 0;
+				  }
 				`; 
 		
 			// add it to the head
@@ -129,12 +203,28 @@ function BuildUI() {
 				SelectOptions +=`
 				<li data-cs-gp-in-group="root" data-cs-gp-group="Font`+key+`" style="display: block; width: 100%; background-color: rgba(255, 255, 255, 0.05); padding: 8px 0px; margin-bottom: 12px;">
 						<div style="display: flex; flex-direction: column; margin: 4px 12px;">
-							<div id="main">
-								<h3 STYLE="font-family: `+key+` !important;" style="margin: 0px;">`+key+`</h3> 
-								<button class="csfd-button" id="`+key+`" data-cs-gp-in-group="Font`+key+`" data-cs-gp-item="Font`+key+`-btn">Select and Reload</button>
+							<div class="fdradiocontrols">
+								<h3 STYLE="font-family: `+key+` !important;" style="margin: 0px;">`+key+`</h3>
+								<fieldset>
+									<label class="fdradio">
+									Menu
+										<input type="radio" class="option-input radio" value="`+key+`" name="Menu" data-cs-gp-in-group="Font`+key+`" data-cs-gp-item="Font`+key+`-Radio-Menu"/>
+										
+									</label>
+
+									<label class="fdradio">
+									Library
+										<input type="radio" class="option-input radio" value="`+key+`" name="Library" data-cs-gp-in-group="Font`+key+`" data-cs-gp-item="Font`+key+`-Radio-Library"/>
+										
+									</label>
+
+									<label class="fdradio">
+										Quick
+										<input type="radio" class="option-input radio" value="`+key+`" name="Quick" data-cs-gp-in-group="Font`+key+`" data-cs-gp-item="Font`+key+`-Radio-Quick"/>
+									</label>
+								</fieldset>
 							</div>
 						<p STYLE="font-family: `+key+` !important;" style="margin: 0px 0px 0px;">`+randomPangrams()+"  "+randomPangrams()+"  "+randomPangrams()+`</p>
-						
 					</div>
 				</li>
 				`;
@@ -143,33 +233,63 @@ function BuildUI() {
 
 		// Default List Item, Plus Processed Lists Items
 		fdpanel.innerHTML = `
-			<h2 style="text-align: left;">FontDeck</h2>
+			<div>
+				<h2 style="text-align: left;">FontDeck</h2>
+				<button style="text-align: right;" class="csfd-button" id="Save" data-cs-gp-in-group="root" data-cs-gp-item="FontSave-btn">Save and Reload</button>
+			</div><br /><br /><br />
 			<div id="wrapper">
-			<ul style="list-style: none; margin: 0px; padding: 0px;">
-			<li data-cs-gp-in-group="root" data-cs-gp-group="FontDefault" data-cs-gp-init-focus="true" style="display: block; width: 100%; background-color: rgba(255, 255, 255, 0.05); padding: 8px 0px; margin-bottom: 12px;">
-				<div style="display: flex; flex-direction: column; margin: 4px 12px;">
-					<div id="main">
-						<h3 STYLE="font-family: Motiva !important;" style="margin: 0px;">Default Steam OS</h3>
-						<button class="csfd-button" id="Default" data-cs-gp-in-group="FontDefault" data-cs-gp-item="FontDefault-btn">Select and Reload</button>
-					</div>
-					<p STYLE="font-family: Motiva !important;" style="margin: 0px 0px 0px;">`+randomPangrams()+"  "+randomPangrams()+"  "+randomPangrams()+`</p>
+				<ul style="list-style: none; margin: 0px; padding: 0px;">
+					<li data-cs-gp-in-group="root" data-cs-gp-group="FontDefault" data-cs-gp-init-focus="true" style="display: block; width: 100%; background-color: rgba(255, 255, 255, 0.05); padding: 8px 0px; margin-bottom: 12px;">
+						<div style="display: flex; flex-direction: column; margin: 4px 12px;">
+							<div id="main">
+								<h3 STYLE="font-family: "Motiva Sans" !important;" style="margin: 0px;">Default Steam OS</h3>
+							</div>
+							<p STYLE="font-family: "Motiva Sans" !important;" style="margin: 0px 0px 0px;">`+randomPangrams()+"  "+randomPangrams()+"  "+randomPangrams()+`</p>
 
-				</div>
-			</li>
-			`+SelectOptions+`
-			</ul>
+						</div>
+					</li>
+				`+SelectOptions+`
+				</ul>
 			</div>
 		`;
 		// Injects Lists into Manage Panel
 		root.appendChild(fdpanel);
 
 		//Does the stuff to make all the buttons click and send the Font names.
-		let btns = document.querySelectorAll('button');
+		let btns = document.querySelectorAll('.csfd-button');
 
 		btns.forEach(function (i) {
 			i.addEventListener('click', function(event) {
-				SaveFont(event.target.id);
+				//SaveFont(event.target.id);
+
+				//Radio switch stuff
+				const radioMenus = document.querySelectorAll('input[name="Menu"]');
+				const radioLibrarys = document.querySelectorAll('input[name="Library"]');
+				const radioQuicks = document.querySelectorAll('input[name="Quick"]');
+
+				for (const radioMenu of radioMenus) {
+					if (radioMenu.checked) {
+						SaveFont(radioMenu.value,"Menu");
+						break;
+					}
+				}
+				
+				for (const radioLibrary of radioLibrarys) {
+					if (radioLibrary.checked) {
+						SaveFont(radioLibrary.value,"Library");
+						break;
+					}
+				}
+				
+				for (const radioQuick of radioQuicks) {
+					if (radioQuick.checked) {
+						SaveFont(radioQuick.value,"Quick");
+						break;
+					}
+				}
+
 				smm.Plugins.reloadPlugin('crankshaft-fontdeck');
+
 			});
 		});
 		},
